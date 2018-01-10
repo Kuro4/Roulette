@@ -10,7 +10,7 @@ namespace Roulette.Models
 {
     public class Roulette : BindableBase
     {
-        public ObservableCollection<string> Data { get; private set; } = new ObservableCollection<string>();
+        public List<string> Data { get; private set; } = new List<string>();
 
         private bool isSpin;
         public bool IsSpin
