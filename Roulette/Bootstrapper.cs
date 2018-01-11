@@ -1,5 +1,5 @@
 ﻿using Prism.Unity;
-using Roulette.Views;
+using RouletteApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Roulette
+namespace RouletteApp
 {
     class Bootstrapper: UnityBootstrapper
     {

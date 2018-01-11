@@ -110,7 +110,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="Models\FileIOHelper.cs" />
     <Compile Include="Models\Roulette.cs" />
+    <Compile Include="Models\SaveAndLoadFileDialogHelper.cs" />
+    <Compile Include="ViewModels\RouletteViewModel.cs" />
     <Compile Include="Views\Shell.xaml.cs">
       <DependentUpon>Shell.xaml</DependentUpon>
     </Compile>
