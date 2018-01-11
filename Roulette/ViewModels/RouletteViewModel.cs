@@ -63,11 +63,11 @@ namespace RouletteApp.ViewModels
                 .Select(x => !x)
                 .ToReactiveCommand();
             //コレクションへの変更処理
-            this.C_ChangeContent.Subscribe((x => StringSplit((string)x, this.Data)));
+            this.C_ChangeContent.Subscribe((x => StringSplit((string)x)));
             //自動更新がTrueならEdit変更時にコレクションへ追加する
             Edit.Subscribe(x =>
             {
-                if (this.AutoUpdate.Value) this.StringSplit(x, this.Data);
+                if (this.AutoUpdate.Value) this.StringSplit(x);
             });
             //Edit可否の設定
             this.CanEdit = IsSpin
@@ -83,7 +83,7 @@ namespace RouletteApp.ViewModels
             this.C_LoadFromCSV.Subscribe(_ =>
             {
                 this.Edit.Value = this.LoadFromCSV();
-                this.StringSplit(this.Edit.Value, this.Data);
+                this.StringSplit(this.Edit.Value);
             });
         }
         #region Method
@@ -128,13 +128,13 @@ namespace RouletteApp.ViewModels
         /// </summary>
         /// <param name="source">コレクションにする文字列</param>
         /// <param name="collection">変更するコレクション</param>
-        private void StringSplit(string source, ICollection<string> collection)
+        public void StringSplit(string source)
         {
-            collection.Clear();
+            this.Data.Clear();
             if (string.IsNullOrWhiteSpace(source)) return;
             foreach (var str in source.Split(','))
             {
-                collection.Add(str);
+                this.Data.Add(str);
             }
         }
         /// <summary>

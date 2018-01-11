@@ -7,6 +7,8 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         prism:ViewModelLocator.AutoWireViewModel="True"
         xmlns:ViewModels="clr-namespace:RouletteApp.ViewModels"
+        xmlns:i ="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:be="clr-namespace:RouletteApp.Behaviors"
         xmlns:local="clr-namespace:RouletteApp.Views"
         mc:Ignorable="d"
         Title="ルーレットするやつ"
@@ -24,6 +26,9 @@
             <Setter Property="FontSize" Value="14"/>
         </Style>
     </Window.Resources>
+    <i:Interaction.Behaviors>
+        <be:AddWindowsColseCommand Command="{Binding C_SaveSettings}"/>
+    </i:Interaction.Behaviors>
     <Grid Margin="10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

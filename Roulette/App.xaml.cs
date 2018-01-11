@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RouletteApp.Properties;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -15,6 +16,13 @@ namespace RouletteApp
     {
         private void Application_Startup(object sender, StartupEventArgs e)
         {
+            // 前バージョンからのUpgradeを実行していないときは、Upgradeを実施する
+            if (Settings.Default.IsUpgrade == false)
+            {
+                Settings.Default.Upgrade();
+                Settings.Default.IsUpgrade = true;
+                Settings.Default.Save();
+            }
             // Bootstrapperを起動する
             new Bootstrapper().Run();
         }

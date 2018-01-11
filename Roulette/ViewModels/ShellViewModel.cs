@@ -27,14 +27,38 @@ namespace RouletteApp.ViewModels
         public RouletteViewModel Roulette5 { get; }
         public ReactiveCommand C_AllSpin { get; private set; } = new ReactiveCommand();
         public ReactiveCommand C_AllStop { get; private set; } = new ReactiveCommand();
+        public ReactiveCommand C_SaveSettings { get; private set; } = new ReactiveCommand();
         #endregion
         public ShellViewModel()
         {
+            //初期化
             this.Roulette1 = new RouletteViewModel(this.Speed, this.AutoStop);
             this.Roulette2 = new RouletteViewModel(this.Speed, this.AutoStop);
             this.Roulette3 = new RouletteViewModel(this.Speed, this.AutoStop);
             this.Roulette4 = new RouletteViewModel(this.Speed, this.AutoStop);
             this.Roulette5 = new RouletteViewModel(this.Speed, this.AutoStop);
+
+            //Settings読込
+            var settings = Properties.Settings.Default;
+            this.Roulette1.Edit.Value = settings.Roulette1;
+            this.Roulette2.Edit.Value = settings.Roulette2;
+            this.Roulette3.Edit.Value = settings.Roulette3;
+            this.Roulette4.Edit.Value = settings.Roulette4;
+            this.Roulette5.Edit.Value = settings.Roulette5;
+            this.Speed.Value = settings.Speed;
+            this.AutoStop.Value = settings.AutoStop;
+
+            C_SaveSettings.Subscribe(_ =>
+            {
+                settings.Roulette1 = this.Roulette1.Edit.Value;
+                settings.Roulette2 = this.Roulette2.Edit.Value;
+                settings.Roulette3 = this.Roulette3.Edit.Value;
+                settings.Roulette4 = this.Roulette4.Edit.Value;
+                settings.Roulette5 = this.Roulette5.Edit.Value;
+                settings.Speed = this.Speed.Value;
+                settings.AutoStop = this.AutoStop.Value;
+                settings.Save();
+            });
             //どれか一つでも回っていれば自動停止の変更を不能にする
             this.CanAutoStopChange = this.Roulette1.IsSpin
                 .CombineLatest(this.Roulette2.IsSpin, (x, y) => !x && !y)

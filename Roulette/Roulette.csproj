@@ -109,6 +109,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Behaviors\AddWindowsColseCommand.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Models\FileIOHelper.cs" />
     <Compile Include="Models\Roulette.cs" />
@@ -139,7 +140,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
